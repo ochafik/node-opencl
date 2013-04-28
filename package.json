@@ -1,0 +1,45 @@
+{
+  "name": "node-opencl",
+  "version": "0.1.0",
+  "description": "A WebCL implementation for NodeJS",
+  "main": "lib/cl.js",
+  "author": "Olivier Chafik <olivier.chafik@gmail.com>",
+  "keywords": ["webcl", "opencl"],
+  "maintainers": [
+    {
+      "name": "Olivier Chafik",
+      "email": "olivier.chafik@gmail.com",
+      "web": "http://ochafik.com"
+    }
+  ],
+  "licenses": [
+    {
+      "type":"BSD",
+      "url":"https://github.com/ochafik/node-opencl/blob/master/LICENSE"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/ochafik/node-opencl"
+    }
+  ],
+  "directories": {
+    "src": "src",
+    "lib": "lib",
+    "test": "test",
+    "examples": "examples"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "install": "node-gyp rebuild",
+    "test": "node test/*.js",
+  },
+  "dependencies": {
+    "ref" : "",
+    "ref-array" : ""
+  }
+}
+

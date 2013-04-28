@@ -1,0 +1,33 @@
+-dontCastConstants
+
+-nocpp
+-noMangling
+
+-gccLong
+-genRawBindings
+-limitComments
+
+"-Mextern="
+"-M__stdcall="
+"-M__declspec(x)=x"
+"-M__extension__="
+"-TCGLContextObj=void*"
+
+-U_MSC_VER
+-DCL_USE_DEPRECATED_OPENCL_1_0_APIS=1
+-DCL_USE_DEPRECATED_OPENCL_1_1_APIS=1
+-DCL_USE_DEPRECATED_OPENCL_1_2_APIS=1
+-M__APPLE__=
+//-DGLAPI=
+//-DAPIENTRY=
+
+-v
+
+-mode Directory 
+-f 
+-d $(DIR)/src
+-runtime NodeJS 
+
+-framework OpenGL 
+-framework OpenCL 
+  "-TIOSurfaceRef=void*"
