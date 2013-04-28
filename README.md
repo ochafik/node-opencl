@@ -12,9 +12,14 @@ Hack
   * Regenerate the bindings:
 ```
     java -jar jnaerator-0.12-SNAPSHOT-shaded.jar
-    node-gyp rebuild
 ```
 
+Build:
+```
+    npm install ref ref-array weak
+    node-gyp rebuild
+```
+    
 Test:
 ```
     npm test

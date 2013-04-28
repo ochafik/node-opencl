@@ -35,11 +35,12 @@
   },
   "scripts": {
     "install": "node-gyp rebuild",
-    "test": "node test/*.js",
+    "test": "node test/*.js"
   },
   "dependencies": {
     "ref" : "",
-    "ref-array" : ""
+    "ref-array" : "",
+    "weak" : ""
   }
 }
 
