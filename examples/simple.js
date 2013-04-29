@@ -8,6 +8,7 @@ platforms.forEach(function(platform) {
     console.log("Devices: " + JSON.stringify(devices, null, 2))
     devices.forEach(function(device) {
         var context = platform.createContext([device])
+        var queue = context.createCommandQueue(device)
         
         var source =
             "__kernel void f(__global const char *input, __global char *output) {" +
@@ -19,13 +20,16 @@ platforms.forEach(function(platform) {
         console.log("Program: " + JSON.stringify(program, null, 2))
         
         var size = 32
-        var queue = context.createCommandQueue(device)
         var input = context.createBuffer(cl.MEM_READ_WRITE, size)
         var output = context.createBuffer(cl.MEM_READ_WRITE, size)
+        console.log("output: " + JSON.stringify(output, null, 2))
         var kernel = program.createKernel("f")
+        console.log("kernel: " + JSON.stringify(kernel, null, 2))
         
         queue.enqueueTask(kernel)
+        console.log("enqueued task")
         queue.finish()
+        console.log("finished")
         //var b = context.
     })
 })
