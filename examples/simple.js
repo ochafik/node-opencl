@@ -24,6 +24,8 @@ platforms.forEach(function(platform) {
         var output = context.createBuffer(cl.MEM_READ_WRITE, size)
         console.log("output: " + JSON.stringify(output, null, 2))
         var kernel = program.createKernel("f")
+        kernel.setArg(0, input)
+        kernel.setArg(1, output)
         console.log("kernel: " + JSON.stringify(kernel, null, 2))
         
         queue.enqueueTask(kernel)
