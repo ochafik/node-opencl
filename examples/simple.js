@@ -31,7 +31,8 @@ platforms.forEach(function(platform) {
         kernel.setArg(2, output)
         console.log("kernel: " + JSON.stringify(kernel, null, 2))
         
-        queue.enqueueTask(kernel)
+        var e = queue.enqueueTask(kernel)
+        console.log("task event: " + JSON.stringify(e, null, 2))
         
         
         var outputBuffer = new Buffer(size)
