@@ -25,7 +25,7 @@
 
 -mode Directory 
 -f 
--o $(DIR)/src
+-o $(DIR)
 -runtime NodeJS 
 
 -framework OpenGL 

@@ -8,6 +8,7 @@
 
 #import <OpenCL/OpenCL.h>
 
+void _dummy_node_buffer_free_callback_(char* data, void* hint) {}
 v8::Handle<v8::Value > OpenCL_clGetPlatformIDs(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 3)) 
 		return v8::ThrowException(v8::String::New("clGetPlatformIDs() requires 3 arguments!"));
@@ -155,7 +156,10 @@ v8::Handle<v8::Value > OpenCL_clCreateContext(const v8::Arguments& _arguments_) 
 	char* cl_intPtr1 = _arguments_[5]->IsNull() ? NULL : node::Buffer::Data(_arguments_[5].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_context _return_ = clCreateContext((const cl_context_properties*)cl_context_propertiesPtr1, (cl_uint)(*cl_uint1)->Value(), (const cl_device_id*)cl_device_idPtr1, (void (*)(const char* charPtr1, const void* voidPtr1, size_t size_t1, void* voidPtr2))arg1, (void*)voidPtr1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateContextFromType(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 5)) 
@@ -177,7 +181,10 @@ v8::Handle<v8::Value > OpenCL_clCreateContextFromType(const v8::Arguments& _argu
 	char* cl_intPtr1 = _arguments_[4]->IsNull() ? NULL : node::Buffer::Data(_arguments_[4].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_context _return_ = clCreateContextFromType((const cl_context_properties*)cl_context_propertiesPtr1, (cl_device_type)(*cl_device_type1)->Value(), (void (*)(const char* charPtr1, const void* voidPtr1, size_t size_t1, void* voidPtr2))arg1, (void*)voidPtr1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clRetainContext(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -238,7 +245,10 @@ v8::Handle<v8::Value > OpenCL_clCreateCommandQueue(const v8::Arguments& _argumen
 	char* cl_intPtr1 = _arguments_[3]->IsNull() ? NULL : node::Buffer::Data(_arguments_[3].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_command_queue _return_ = clCreateCommandQueue((cl_context)cl_context1, (cl_device_id)cl_device_id1, (cl_command_queue_properties)(*cl_command_queue_properties1)->Value(), (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clRetainCommandQueue(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -302,7 +312,10 @@ v8::Handle<v8::Value > OpenCL_clCreateBuffer(const v8::Arguments& _arguments_) {
 	char* cl_intPtr1 = _arguments_[4]->IsNull() ? NULL : node::Buffer::Data(_arguments_[4].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateBuffer((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (size_t)(*size_t1)->Value(), (void*)voidPtr1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateSubBuffer(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 5)) 
@@ -324,7 +337,10 @@ v8::Handle<v8::Value > OpenCL_clCreateSubBuffer(const v8::Arguments& _arguments_
 	char* cl_intPtr1 = _arguments_[4]->IsNull() ? NULL : node::Buffer::Data(_arguments_[4].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateSubBuffer((cl_mem)cl_mem1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (cl_buffer_create_type)(*cl_buffer_create_type1)->Value(), (const void*)voidPtr1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateImage(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 6)) 
@@ -349,7 +365,10 @@ v8::Handle<v8::Value > OpenCL_clCreateImage(const v8::Arguments& _arguments_) {
 	char* cl_intPtr1 = _arguments_[5]->IsNull() ? NULL : node::Buffer::Data(_arguments_[5].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateImage((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (const cl_image_format*)cl_image_formatPtr1, (const cl_image_desc*)cl_image_descPtr1, (void*)voidPtr1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clRetainMemObject(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -476,7 +495,10 @@ v8::Handle<v8::Value > OpenCL_clCreateSampler(const v8::Arguments& _arguments_) 
 	char* cl_intPtr1 = _arguments_[4]->IsNull() ? NULL : node::Buffer::Data(_arguments_[4].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_sampler _return_ = clCreateSampler((cl_context)cl_context1, (cl_bool)(*cl_bool1)->Value(), (cl_addressing_mode)(*cl_addressing_mode1)->Value(), (cl_filter_mode)(*cl_filter_mode1)->Value(), (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clRetainSampler(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -540,7 +562,10 @@ v8::Handle<v8::Value > OpenCL_clCreateProgramWithSource(const v8::Arguments& _ar
 	char* cl_intPtr1 = _arguments_[4]->IsNull() ? NULL : node::Buffer::Data(_arguments_[4].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_program _return_ = clCreateProgramWithSource((cl_context)cl_context1, (cl_uint)(*cl_uint1)->Value(), (const char**)charPtrPtr1, (const size_t*)size_tPtr1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateProgramWithBinary(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 7)) 
@@ -568,7 +593,10 @@ v8::Handle<v8::Value > OpenCL_clCreateProgramWithBinary(const v8::Arguments& _ar
 	char* cl_intPtr2 = _arguments_[6]->IsNull() ? NULL : node::Buffer::Data(_arguments_[6].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_program _return_ = clCreateProgramWithBinary((cl_context)cl_context1, (cl_uint)(*cl_uint1)->Value(), (const cl_device_id*)cl_device_idPtr1, (const size_t*)size_tPtr1, (const unsigned char**)charPtrPtr1, (cl_int*)cl_intPtr1, (cl_int*)cl_intPtr2);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateProgramWithBuiltInKernels(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 5)) 
@@ -590,7 +618,10 @@ v8::Handle<v8::Value > OpenCL_clCreateProgramWithBuiltInKernels(const v8::Argume
 	char* cl_intPtr1 = _arguments_[4]->IsNull() ? NULL : node::Buffer::Data(_arguments_[4].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_program _return_ = clCreateProgramWithBuiltInKernels((cl_context)cl_context1, (cl_uint)(*cl_uint1)->Value(), (const cl_device_id*)cl_device_idPtr1, (const char*)(*v8::String::AsciiValue(charPtr1)), (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clRetainProgram(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -703,7 +734,10 @@ v8::Handle<v8::Value > OpenCL_clLinkProgram(const v8::Arguments& _arguments_) {
 	char* cl_intPtr1 = _arguments_[8]->IsNull() ? NULL : node::Buffer::Data(_arguments_[8].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_program _return_ = clLinkProgram((cl_context)cl_context1, (cl_uint)(*cl_uint1)->Value(), (const cl_device_id*)cl_device_idPtr1, (const char*)(*v8::String::AsciiValue(charPtr1)), (cl_uint)(*cl_uint2)->Value(), (const cl_program*)cl_programPtr1, (void (*)(cl_program cl_program1, void* voidPtr1))arg1, (void*)voidPtr1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clUnloadPlatformCompiler(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -776,7 +810,10 @@ v8::Handle<v8::Value > OpenCL_clCreateKernel(const v8::Arguments& _arguments_) {
 	char* cl_intPtr1 = _arguments_[2]->IsNull() ? NULL : node::Buffer::Data(_arguments_[2].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_kernel _return_ = clCreateKernel((cl_program)cl_program1, (const char*)(*v8::String::AsciiValue(charPtr1)), (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateKernelsInProgram(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 4)) 
@@ -954,7 +991,10 @@ v8::Handle<v8::Value > OpenCL_clCreateUserEvent(const v8::Arguments& _arguments_
 	char* cl_intPtr1 = _arguments_[1]->IsNull() ? NULL : node::Buffer::Data(_arguments_[1].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_event _return_ = clCreateUserEvent((cl_context)cl_context1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clRetainEvent(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -1578,7 +1618,10 @@ v8::Handle<v8::Value > OpenCL_clEnqueueMapBuffer(const v8::Arguments& _arguments
 	char* cl_intPtr1 = _arguments_[9]->IsNull() ? NULL : node::Buffer::Data(_arguments_[9].As<v8::Object >());
 	v8::HandleScope _scope_;
 	void* _return_ = clEnqueueMapBuffer((cl_command_queue)cl_command_queue1, (cl_mem)cl_mem1, (cl_bool)(*cl_bool1)->Value(), (cl_map_flags)(*cl_map_flags1)->Value(), (size_t)(*size_t1)->Value(), (size_t)(*size_t2)->Value(), (cl_uint)(*cl_uint1)->Value(), (const cl_event*)cl_eventPtr1, (cl_event*)cl_eventPtr2, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clEnqueueMapImage(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 12)) 
@@ -1621,7 +1664,10 @@ v8::Handle<v8::Value > OpenCL_clEnqueueMapImage(const v8::Arguments& _arguments_
 	char* cl_intPtr1 = _arguments_[11]->IsNull() ? NULL : node::Buffer::Data(_arguments_[11].As<v8::Object >());
 	v8::HandleScope _scope_;
 	void* _return_ = clEnqueueMapImage((cl_command_queue)cl_command_queue1, (cl_mem)cl_mem1, (cl_bool)(*cl_bool1)->Value(), (cl_map_flags)(*cl_map_flags1)->Value(), (const size_t*)size_tPtr1, (const size_t*)size_tPtr2, (size_t*)size_tPtr3, (size_t*)size_tPtr4, (cl_uint)(*cl_uint1)->Value(), (const cl_event*)cl_eventPtr1, (cl_event*)cl_eventPtr2, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clEnqueueUnmapMemObject(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 6)) 
@@ -1834,7 +1880,10 @@ v8::Handle<v8::Value > OpenCL_clGetExtensionFunctionAddressForPlatform(const v8:
 	v8::Handle<v8::String > charPtr1 = _arguments_[1]->ToString();
 	v8::HandleScope _scope_;
 	void* _return_ = clGetExtensionFunctionAddressForPlatform((cl_platform_id)cl_platform_id1, (const char*)(*v8::String::AsciiValue(charPtr1)));
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clSetCommandQueueProperty(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 4)) 
@@ -1884,7 +1933,10 @@ v8::Handle<v8::Value > OpenCL_clCreateImage2D(const v8::Arguments& _arguments_) 
 	char* cl_intPtr1 = _arguments_[7]->IsNull() ? NULL : node::Buffer::Data(_arguments_[7].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateImage2D((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (const cl_image_format*)cl_image_formatPtr1, (size_t)(*size_t1)->Value(), (size_t)(*size_t2)->Value(), (size_t)(*size_t3)->Value(), (void*)voidPtr1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateImage3D(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 10)) 
@@ -1921,7 +1973,10 @@ v8::Handle<v8::Value > OpenCL_clCreateImage3D(const v8::Arguments& _arguments_) 
 	char* cl_intPtr1 = _arguments_[9]->IsNull() ? NULL : node::Buffer::Data(_arguments_[9].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateImage3D((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (const cl_image_format*)cl_image_formatPtr1, (size_t)(*size_t1)->Value(), (size_t)(*size_t2)->Value(), (size_t)(*size_t3)->Value(), (size_t)(*size_t4)->Value(), (size_t)(*size_t5)->Value(), (void*)voidPtr1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clEnqueueMarker(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 2)) 
@@ -1977,7 +2032,10 @@ v8::Handle<v8::Value > OpenCL_clGetExtensionFunctionAddress(const v8::Arguments&
 	v8::Handle<v8::String > charPtr1 = _arguments_[0]->ToString();
 	v8::HandleScope _scope_;
 	void* _return_ = clGetExtensionFunctionAddress((const char*)(*v8::String::AsciiValue(charPtr1)));
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateFromGLBuffer(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 4)) 
@@ -1996,7 +2054,10 @@ v8::Handle<v8::Value > OpenCL_clCreateFromGLBuffer(const v8::Arguments& _argumen
 	char* intPtr1 = _arguments_[3]->IsNull() ? NULL : node::Buffer::Data(_arguments_[3].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateFromGLBuffer((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (cl_GLuint)(*cl_GLuint1)->Value(), (int*)intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateFromGLTexture(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 6)) 
@@ -2021,7 +2082,10 @@ v8::Handle<v8::Value > OpenCL_clCreateFromGLTexture(const v8::Arguments& _argume
 	char* cl_intPtr1 = _arguments_[5]->IsNull() ? NULL : node::Buffer::Data(_arguments_[5].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateFromGLTexture((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (cl_GLenum)(*cl_GLenum1)->Value(), (cl_GLint)(*cl_GLint1)->Value(), (cl_GLuint)(*cl_GLuint1)->Value(), (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateFromGLRenderbuffer(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 4)) 
@@ -2040,7 +2104,10 @@ v8::Handle<v8::Value > OpenCL_clCreateFromGLRenderbuffer(const v8::Arguments& _a
 	char* cl_intPtr1 = _arguments_[3]->IsNull() ? NULL : node::Buffer::Data(_arguments_[3].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateFromGLRenderbuffer((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (cl_GLuint)(*cl_GLuint1)->Value(), (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clGetGLObjectInfo(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 3)) 
@@ -2153,7 +2220,10 @@ v8::Handle<v8::Value > OpenCL_clCreateFromGLTexture2D(const v8::Arguments& _argu
 	char* cl_intPtr1 = _arguments_[5]->IsNull() ? NULL : node::Buffer::Data(_arguments_[5].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateFromGLTexture2D((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (cl_GLenum)(*cl_GLenum1)->Value(), (cl_GLint)(*cl_GLint1)->Value(), (cl_GLuint)(*cl_GLuint1)->Value(), (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateFromGLTexture3D(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 6)) 
@@ -2178,7 +2248,10 @@ v8::Handle<v8::Value > OpenCL_clCreateFromGLTexture3D(const v8::Arguments& _argu
 	char* cl_intPtr1 = _arguments_[5]->IsNull() ? NULL : node::Buffer::Data(_arguments_[5].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateFromGLTexture3D((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (cl_GLenum)(*cl_GLenum1)->Value(), (cl_GLint)(*cl_GLint1)->Value(), (cl_GLuint)(*cl_GLuint1)->Value(), (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clGetGLContextInfoAPPLE(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 6)) 
@@ -2219,7 +2292,10 @@ v8::Handle<v8::Value > OpenCL_clCreateEventFromGLsyncKHR(const v8::Arguments& _a
 	char* cl_intPtr1 = _arguments_[2]->IsNull() ? NULL : node::Buffer::Data(_arguments_[2].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_event _return_ = clCreateEventFromGLsyncKHR((cl_context)cl_context1, (cl_GLsync)cl_GLsync1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clCreateImageFromIOSurface2DAPPLE(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 7)) 
@@ -2247,7 +2323,10 @@ v8::Handle<v8::Value > OpenCL_clCreateImageFromIOSurface2DAPPLE(const v8::Argume
 	char* cl_intPtr1 = _arguments_[6]->IsNull() ? NULL : node::Buffer::Data(_arguments_[6].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = clCreateImageFromIOSurface2DAPPLE((cl_context)cl_context1, (cl_mem_flags)(*cl_mem_flags1)->Value(), (const cl_image_format*)cl_image_formatPtr1, (size_t)(*size_t1)->Value(), (size_t)(*size_t2)->Value(), (IOSurfaceRef)IOSurfaceRef1, (cl_int*)cl_intPtr1);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clSetMemObjectDestructorAPPLE(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 3)) 
@@ -2420,7 +2499,10 @@ v8::Handle<v8::Value > OpenCL_clCreateDAGAPPLE(const v8::Arguments& _arguments_)
 	char* c = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_dag _return_ = clCreateDAGAPPLE((cl_context)c);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_clReleaseDAGAPPLE(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -2468,7 +2550,10 @@ v8::Handle<v8::Value > OpenCL_clCreateKernelFromDAGAPPLE(const v8::Arguments& _a
 	char* list = _arguments_[2]->IsNull() ? NULL : node::Buffer::Data(_arguments_[2].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_kernel _return_ = clCreateKernelFromDAGAPPLE((cl_dag)d, (cl_uint)(*n)->Value(), (const cl_device_id*)list);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_create_dispatch_queue(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 2)) 
@@ -2481,7 +2566,10 @@ v8::Handle<v8::Value > OpenCL_gcl_create_dispatch_queue(const v8::Arguments& _ar
 	char* device_id = _arguments_[1]->IsNull() ? NULL : node::Buffer::Data(_arguments_[1].As<v8::Object >());
 	v8::HandleScope _scope_;
 	dispatch_queue_t _return_ = gcl_create_dispatch_queue((cl_queue_flags)(*flags)->Value(), (cl_device_id)device_id);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_malloc(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 3)) 
@@ -2497,7 +2585,10 @@ v8::Handle<v8::Value > OpenCL_gcl_malloc(const v8::Arguments& _arguments_) {
 	v8::Handle<v8::Number > flags = _arguments_[2]->ToNumber();
 	v8::HandleScope _scope_;
 	void* _return_ = gcl_malloc((size_t)(*bytes)->Value(), (void*)host_ptr, (cl_malloc_flags)(*flags)->Value());
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_free(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -2529,7 +2620,10 @@ v8::Handle<v8::Value > OpenCL_gcl_create_image(const v8::Arguments& _arguments_)
 	char* io_surface = _arguments_[4]->IsNull() ? NULL : node::Buffer::Data(_arguments_[4].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_image _return_ = gcl_create_image((const cl_image_format*)image_format, (size_t)(*image_width)->Value(), (size_t)(*image_height)->Value(), (size_t)(*image_depth)->Value(), (IOSurfaceRef)io_surface);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_retain_image(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -2697,7 +2791,10 @@ v8::Handle<v8::Value > OpenCL_gcl_map_ptr(const v8::Arguments& _arguments_) {
 	v8::Handle<v8::Number > cb = _arguments_[2]->ToNumber();
 	v8::HandleScope _scope_;
 	void* _return_ = gcl_map_ptr((void*)ptr, (cl_map_flags)(*map_flags)->Value(), (size_t)(*cb)->Value());
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_map_image(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 4)) 
@@ -2716,7 +2813,10 @@ v8::Handle<v8::Value > OpenCL_gcl_map_image(const v8::Arguments& _arguments_) {
 	char* region = _arguments_[3]->IsNull() ? NULL : node::Buffer::Data(_arguments_[3].As<v8::Object >());
 	v8::HandleScope _scope_;
 	void* _return_ = gcl_map_image((cl_image)image, (cl_map_flags)(*map_flags)->Value(), (const size_t*)origin, (const size_t*)region);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_unmap(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -2736,7 +2836,10 @@ v8::Handle<v8::Value > OpenCL_gcl_create_kernel_from_block(const v8::Arguments& 
 	char* kernel_block_ptr = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_kernel _return_ = gcl_create_kernel_from_block((void*)kernel_block_ptr);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_get_kernel_block_workgroup_info(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 5)) 
@@ -2768,7 +2871,10 @@ v8::Handle<v8::Value > OpenCL_gcl_get_device_id_with_dispatch_queue(const v8::Ar
 	char* queue = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_device_id _return_ = gcl_get_device_id_with_dispatch_queue((dispatch_queue_t)queue);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_set_finalizer(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 3)) 
@@ -2811,7 +2917,10 @@ v8::Handle<v8::Value > OpenCL_gcl_create_buffer_from_ptr(const v8::Arguments& _a
 	char* ptr = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
 	v8::HandleScope _scope_;
 	cl_mem _return_ = gcl_create_buffer_from_ptr((void*)ptr);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_gl_create_ptr_from_buffer(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -2821,7 +2930,10 @@ v8::Handle<v8::Value > OpenCL_gcl_gl_create_ptr_from_buffer(const v8::Arguments&
 	v8::Handle<v8::Number > bufobj = _arguments_[0]->ToNumber();
 	v8::HandleScope _scope_;
 	void* _return_ = gcl_gl_create_ptr_from_buffer((GLuint)(*bufobj)->Value());
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_gl_create_image_from_texture(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 3)) 
@@ -2837,7 +2949,10 @@ v8::Handle<v8::Value > OpenCL_gcl_gl_create_image_from_texture(const v8::Argumen
 	v8::Handle<v8::Number > texture = _arguments_[2]->ToNumber();
 	v8::HandleScope _scope_;
 	cl_image _return_ = gcl_gl_create_image_from_texture((GLenum)(*texture_target)->Value(), (GLint)(*mip_level)->Value(), (GLuint)(*texture)->Value());
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_gl_create_image_from_renderbuffer(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -2847,7 +2962,10 @@ v8::Handle<v8::Value > OpenCL_gcl_gl_create_image_from_renderbuffer(const v8::Ar
 	v8::Handle<v8::Number > render_buffer = _arguments_[0]->ToNumber();
 	v8::HandleScope _scope_;
 	cl_image _return_ = gcl_gl_create_image_from_renderbuffer((GLuint)(*render_buffer)->Value());
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenCL_gcl_gl_set_sharegroup(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -2864,7 +2982,10 @@ v8::Handle<v8::Value > OpenCL_gcl_get_context(const v8::Arguments& _arguments_) 
 		return v8::ThrowException(v8::String::New("gcl_get_context() requires 0 arguments!"));
 	v8::HandleScope _scope_;
 	cl_context _return_ = gcl_get_context();
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 void OpenCL_init(v8::Handle<v8::Object > _target_) {
 	_target_->Set(v8::String::NewSymbol("CL_SCHAR_MAX"), v8::Integer::New(127));

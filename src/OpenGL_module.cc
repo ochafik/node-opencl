@@ -8,6 +8,7 @@
 
 #import <OpenCL/OpenCL.h>
 
+void _dummy_node_buffer_free_callback_(char* data, void* hint) {}
 v8::Handle<v8::Value > OpenGL_CGLSetCurrentContext(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
 		return v8::ThrowException(v8::String::New("CGLSetCurrentContext() requires 1 arguments!"));
@@ -23,7 +24,10 @@ v8::Handle<v8::Value > OpenGL_CGLGetCurrentContext(const v8::Arguments& _argumen
 		return v8::ThrowException(v8::String::New("CGLGetCurrentContext() requires 0 arguments!"));
 	v8::HandleScope _scope_;
 	CGLContextObj _return_ = CGLGetCurrentContext();
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenGL_CGLGetShareGroup(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -33,7 +37,10 @@ v8::Handle<v8::Value > OpenGL_CGLGetShareGroup(const v8::Arguments& _arguments_)
 	char* ctx = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
 	v8::HandleScope _scope_;
 	CGLShareGroupObj _return_ = CGLGetShareGroup((CGLContextObj)ctx);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenGL_CGLTexImageIOSurface2D(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 9)) 
@@ -132,7 +139,10 @@ v8::Handle<v8::Value > OpenGL_CGLRetainPixelFormat(const v8::Arguments& _argumen
 	char* pix = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
 	v8::HandleScope _scope_;
 	CGLPixelFormatObj _return_ = CGLRetainPixelFormat((CGLPixelFormatObj)pix);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenGL_CGLGetPixelFormatRetainCount(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -239,7 +249,10 @@ v8::Handle<v8::Value > OpenGL_CGLRetainContext(const v8::Arguments& _arguments_)
 	char* ctx = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
 	v8::HandleScope _scope_;
 	CGLContextObj _return_ = CGLRetainContext((CGLContextObj)ctx);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenGL_CGLReleaseContext(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
@@ -269,7 +282,10 @@ v8::Handle<v8::Value > OpenGL_CGLGetPixelFormat(const v8::Arguments& _arguments_
 	char* ctx = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
 	v8::HandleScope _scope_;
 	CGLPixelFormatObj _return_ = CGLGetPixelFormat((CGLContextObj)ctx);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenGL_CGLCreatePBuffer(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 6)) 
@@ -355,7 +371,10 @@ v8::Handle<v8::Value > OpenGL_CGLRetainPBuffer(const v8::Arguments& _arguments_)
 	char* pbuffer = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
 	v8::HandleScope _scope_;
 	CGLPBufferObj _return_ = CGLRetainPBuffer((CGLPBufferObj)pbuffer);
-	return _scope_.Close(node::Buffer::New((char*)_return_, 0)->handle_);
+	if (_return_) 
+		return _scope_.Close(node::Buffer::New((char*)_return_, 1, _dummy_node_buffer_free_callback_, NULL)->handle_);
+	else 
+		return _scope_.Close(v8::Null());
 }
 v8::Handle<v8::Value > OpenGL_CGLReleasePBuffer(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 1)) 
