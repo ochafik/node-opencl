@@ -12,10 +12,10 @@ platforms.forEach(function(platform) {
         
         var size = 32
         var source =
-            "__kernel void f(__global const char *input, __global char *output) {" +
+            "__kernel void f(char add, __global const char *input, __global char *output) {" +
                 //"output[get_global_id(0)] = 2 * input[get_global_id(0)];" +
                 "for (int i = 0; i < " + size + "; i++) {" +
-                "output[i] = 2 * input[i] + 100;" +
+                "output[i] = 2 * input[i] + add;" +
                 "}" +
             "}";
         var program = context.createProgramWithSource(source)
@@ -26,8 +26,9 @@ platforms.forEach(function(platform) {
         var output = context.createBuffer(cl.MEM_READ_WRITE, size)
         console.log("output: " + JSON.stringify(output, null, 2))
         var kernel = program.createKernel("f")
-        kernel.setArg(0, input)
-        kernel.setArg(1, output)
+        kernel.setArg(0, 3, cl.types.BYTE)
+        kernel.setArg(1, input)
+        kernel.setArg(2, output)
         console.log("kernel: " + JSON.stringify(kernel, null, 2))
         
         queue.enqueueTask(kernel)
