@@ -9,6 +9,8 @@ platforms.forEach(function(platform) {
     devices.forEach(function(device) {
         var context = platform.createContext([device])
         var queue = context.createCommandQueue(device)
+        console.log("Context " + JSON.stringify(context, null, 2))
+        console.log("Queue: " + JSON.stringify(queue, null, 2))
         
         var size = 32
         var source =
