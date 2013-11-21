@@ -16,7 +16,8 @@ Hack
 
 Build:
 ```
-    npm install ref ref-array weak node-gyp
+    npm install ref ref-array weak
+    npm install -g node-gyp
     node-gyp rebuild
 ```
     
