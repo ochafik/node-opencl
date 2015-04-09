@@ -1853,22 +1853,22 @@ v8::Handle<v8::Value > OpenCL_clEnqueueBarrierWithWaitList(const v8::Arguments& 
 	cl_int _return_ = clEnqueueBarrierWithWaitList((cl_command_queue)cl_command_queue1, (cl_uint)(*cl_uint1)->Value(), (const cl_event*)cl_eventPtr1, (cl_event*)cl_eventPtr2);
 	return _scope_.Close(v8::Number::New(_return_));
 }
-v8::Handle<v8::Value > OpenCL_clSetPrintfCallback(const v8::Arguments& _arguments_) {
-	if ((_arguments_.Length() != 3)) 
-		return v8::ThrowException(v8::String::New("clSetPrintfCallback() requires 3 arguments!"));
-	if ((!(_arguments_[0]->IsNull() || node::Buffer::HasInstance(_arguments_[0])))) 
-		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_context1' at index 0: expected a Buffer")));
-	char* cl_context1 = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
-	if ((!(_arguments_[1]->IsNull() || node::Buffer::HasInstance(_arguments_[1])))) 
-		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'arg1' at index 1: expected a Buffer")));
-	char* arg1 = _arguments_[1]->IsNull() ? NULL : node::Buffer::Data(_arguments_[1].As<v8::Object >());
-	if ((!(_arguments_[2]->IsNull() || node::Buffer::HasInstance(_arguments_[2])))) 
-		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'voidPtr1' at index 2: expected a Buffer")));
-	char* voidPtr1 = _arguments_[2]->IsNull() ? NULL : node::Buffer::Data(_arguments_[2].As<v8::Object >());
-	v8::HandleScope _scope_;
-	cl_int _return_ = clSetPrintfCallback((cl_context)cl_context1, (void (*)(cl_context cl_context1, cl_uint cl_uint1, char* charPtr1, void* voidPtr1))arg1, (void*)voidPtr1);
-	return _scope_.Close(v8::Number::New(_return_));
-}
+// v8::Handle<v8::Value > OpenCL_clSetPrintfCallback(const v8::Arguments& _arguments_) {
+// 	if ((_arguments_.Length() != 3)) 
+// 		return v8::ThrowException(v8::String::New("clSetPrintfCallback() requires 3 arguments!"));
+// 	if ((!(_arguments_[0]->IsNull() || node::Buffer::HasInstance(_arguments_[0])))) 
+// 		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_context1' at index 0: expected a Buffer")));
+// 	char* cl_context1 = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
+// 	if ((!(_arguments_[1]->IsNull() || node::Buffer::HasInstance(_arguments_[1])))) 
+// 		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'arg1' at index 1: expected a Buffer")));
+// 	char* arg1 = _arguments_[1]->IsNull() ? NULL : node::Buffer::Data(_arguments_[1].As<v8::Object >());
+// 	if ((!(_arguments_[2]->IsNull() || node::Buffer::HasInstance(_arguments_[2])))) 
+// 		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'voidPtr1' at index 2: expected a Buffer")));
+// 	char* voidPtr1 = _arguments_[2]->IsNull() ? NULL : node::Buffer::Data(_arguments_[2].As<v8::Object >());
+// 	v8::HandleScope _scope_;
+// 	cl_int _return_ = clSetPrintfCallback((cl_context)cl_context1, (void (*)(cl_context cl_context1, cl_uint cl_uint1, char* charPtr1, void* voidPtr1))arg1, (void*)voidPtr1);
+// 	return _scope_.Close(v8::Number::New(_return_));
+// }
 v8::Handle<v8::Value > OpenCL_clGetExtensionFunctionAddressForPlatform(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 2)) 
 		return v8::ThrowException(v8::String::New("clGetExtensionFunctionAddressForPlatform() requires 2 arguments!"));
@@ -1885,25 +1885,25 @@ v8::Handle<v8::Value > OpenCL_clGetExtensionFunctionAddressForPlatform(const v8:
 	else 
 		return _scope_.Close(v8::Null());
 }
-v8::Handle<v8::Value > OpenCL_clSetCommandQueueProperty(const v8::Arguments& _arguments_) {
-	if ((_arguments_.Length() != 4)) 
-		return v8::ThrowException(v8::String::New("clSetCommandQueueProperty() requires 4 arguments!"));
-	if ((!(_arguments_[0]->IsNull() || node::Buffer::HasInstance(_arguments_[0])))) 
-		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_command_queue1' at index 0: expected a Buffer")));
-	char* cl_command_queue1 = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
-	if ((!_arguments_[1]->IsNumber())) 
-		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_command_queue_properties1' at index 1: expected a Number")));
-	v8::Handle<v8::Number > cl_command_queue_properties1 = _arguments_[1]->ToNumber();
-	if ((!_arguments_[2]->IsNumber())) 
-		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_bool1' at index 2: expected a Number")));
-	v8::Handle<v8::Number > cl_bool1 = _arguments_[2]->ToNumber();
-	if ((!(_arguments_[3]->IsNull() || node::Buffer::HasInstance(_arguments_[3])))) 
-		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_command_queue_propertiesPtr1' at index 3: expected a Buffer")));
-	char* cl_command_queue_propertiesPtr1 = _arguments_[3]->IsNull() ? NULL : node::Buffer::Data(_arguments_[3].As<v8::Object >());
-	v8::HandleScope _scope_;
-	cl_int _return_ = clSetCommandQueueProperty((cl_command_queue)cl_command_queue1, (cl_command_queue_properties)(*cl_command_queue_properties1)->Value(), (cl_bool)(*cl_bool1)->Value(), (cl_command_queue_properties*)cl_command_queue_propertiesPtr1);
-	return _scope_.Close(v8::Number::New(_return_));
-}
+// v8::Handle<v8::Value > OpenCL_clSetCommandQueueProperty(const v8::Arguments& _arguments_) {
+// 	if ((_arguments_.Length() != 4)) 
+// 		return v8::ThrowException(v8::String::New("clSetCommandQueueProperty() requires 4 arguments!"));
+// 	if ((!(_arguments_[0]->IsNull() || node::Buffer::HasInstance(_arguments_[0])))) 
+// 		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_command_queue1' at index 0: expected a Buffer")));
+// 	char* cl_command_queue1 = _arguments_[0]->IsNull() ? NULL : node::Buffer::Data(_arguments_[0].As<v8::Object >());
+// 	if ((!_arguments_[1]->IsNumber())) 
+// 		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_command_queue_properties1' at index 1: expected a Number")));
+// 	v8::Handle<v8::Number > cl_command_queue_properties1 = _arguments_[1]->ToNumber();
+// 	if ((!_arguments_[2]->IsNumber())) 
+// 		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_bool1' at index 2: expected a Number")));
+// 	v8::Handle<v8::Number > cl_bool1 = _arguments_[2]->ToNumber();
+// 	if ((!(_arguments_[3]->IsNull() || node::Buffer::HasInstance(_arguments_[3])))) 
+// 		return v8::ThrowException(v8::Exception::TypeError(v8::String::New("Invalid value for argument 'cl_command_queue_propertiesPtr1' at index 3: expected a Buffer")));
+// 	char* cl_command_queue_propertiesPtr1 = _arguments_[3]->IsNull() ? NULL : node::Buffer::Data(_arguments_[3].As<v8::Object >());
+// 	v8::HandleScope _scope_;
+// 	cl_int _return_ = clSetCommandQueueProperty((cl_command_queue)cl_command_queue1, (cl_command_queue_properties)(*cl_command_queue_properties1)->Value(), (cl_bool)(*cl_bool1)->Value(), (cl_command_queue_properties*)cl_command_queue_propertiesPtr1);
+// 	return _scope_.Close(v8::Number::New(_return_));
+// }
 v8::Handle<v8::Value > OpenCL_clCreateImage2D(const v8::Arguments& _arguments_) {
 	if ((_arguments_.Length() != 8)) 
 		return v8::ThrowException(v8::String::New("clCreateImage2D() requires 8 arguments!"));
@@ -3511,9 +3511,9 @@ void OpenCL_init(v8::Handle<v8::Object > _target_) {
 	NODE_SET_METHOD(_target_, "clEnqueueNativeKernel", OpenCL_clEnqueueNativeKernel);
 	NODE_SET_METHOD(_target_, "clEnqueueMarkerWithWaitList", OpenCL_clEnqueueMarkerWithWaitList);
 	NODE_SET_METHOD(_target_, "clEnqueueBarrierWithWaitList", OpenCL_clEnqueueBarrierWithWaitList);
-	NODE_SET_METHOD(_target_, "clSetPrintfCallback", OpenCL_clSetPrintfCallback);
+	// NODE_SET_METHOD(_target_, "clSetPrintfCallback", OpenCL_clSetPrintfCallback);
 	NODE_SET_METHOD(_target_, "clGetExtensionFunctionAddressForPlatform", OpenCL_clGetExtensionFunctionAddressForPlatform);
-	NODE_SET_METHOD(_target_, "clSetCommandQueueProperty", OpenCL_clSetCommandQueueProperty);
+	// NODE_SET_METHOD(_target_, "clSetCommandQueueProperty", OpenCL_clSetCommandQueueProperty);
 	NODE_SET_METHOD(_target_, "clCreateImage2D", OpenCL_clCreateImage2D);
 	NODE_SET_METHOD(_target_, "clCreateImage3D", OpenCL_clCreateImage3D);
 	NODE_SET_METHOD(_target_, "clEnqueueMarker", OpenCL_clEnqueueMarker);

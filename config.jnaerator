@@ -4,7 +4,7 @@
 -noMangling
 
 -gccLong
--genRawBindings
+//-genRawBindings
 -limitComments
 
 "-Mextern="
